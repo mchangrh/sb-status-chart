@@ -1,4 +1,4 @@
-const COLOUR = ['#B3FFB5', '#FF9B99', '#B9AEFF']
+const COLOUR = ['#003f5c', '#bc5090', '#ffa600']
 const chartMax = new Date()
 const chartMin = chartMax - 86400000
 
@@ -93,5 +93,5 @@ function createChart(data) {
       }
     }
   }
-  new Chart(ctx, config)
+  const statusChart = new Chart(ctx, config)
 }
