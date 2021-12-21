@@ -1,7 +1,7 @@
 const COLOUR = ['#B3FFB5', '#FF9B99', '#B9AEFF']
 const minRange = 1000 * 60 * 5
 const max = new Date()
-const min = chartMax - 86400000
+const min = max - 86400000
 const enabled = true
 
 // helpers
@@ -47,7 +47,7 @@ const scales = {
     type: 'time',
     round: 'minute',
     min, max,
-    time: { minUnit },
+    time: { minUnit: "minute" },
     title: {
       display: true,
       text: 'Time',
