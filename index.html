@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>24 Hour SB Server Response Time</title>
-  </head>
-  <body>
-    <div><canvas id="chart"></canvas></div>
-    <script src="https://unpkg.com/hammerjs"></script>
-    <script src="https://unpkg.com/chart.js"></script>
-    <script src="https://unpkg.com/chartjs-plugin-zoom"></script>
-    <script src="https://unpkg.com/luxon"></script>
-    <script src="https://unpkg.com/chartjs-adapter-luxon"></script>
-    <script src="assets/chart.js"></script>
-    <script>
-      fetch("https://sb-status.mchang.xyz/raw/chart")
-        .then(res => res.json())
-        .then(data => createChart(processChart(data)))
-    </script>
-  </body>
-</html>
-
+<head>
+  <title>24 Hour SB Server Response Time Graph</title>
+  <style>
+    canvas { max-height: 95vh;}
+    a { color: #000; }
+    pre { text-align: center; }
+  </style>
+</head>
+<body>
+  <canvas id="chart">>Your browser does not support the canvas element.</canvas>
+  <pre>time is localized | line is avg. ping | data for <a href="https://sponsor.ajay.app">sponsor.ajay.app</a> | realtime data at <a href="https://sb-status.mchang.xyz">sb-status.mchang.xyz</a> | <a href="https://github.com/mchangrh/sb-status-chart">GitHub</a></pre>
+  <script rel=preload src="https://cdn.jsdelivr.net/combine/npm/hammerjs@2,npm/chart.js@3"></script>
+  <script rel=preload src="https://cdn.jsdelivr.net/combine/npm/chartjs-plugin-zoom@1,npm/luxon@2,npm/chartjs-adapter-luxon@1,npm/chartjs-plugin-annotation@1"></script>
+  <script rel=preload src="assets/chart.js"></script>
+  <script>
+    fetch("https://sb-status.mchang.xyz/raw/chart")
+      .then(res => res.json())
+      .then(data => createChart(processChart(data)))
+  </script>
+</body>

@@ -1,6 +1,8 @@
 const COLOUR = ['#B3FFB5', '#FF9B99', '#B9AEFF']
-const chartMax = new Date()
-const chartMin = chartMax - 86400000
+const minRange = 1000 * 60 * 5
+const max = new Date()
+const min = chartMax - 86400000
+const enabled = true
 
 // helpers
 const getColor = (c) => COLOUR[c.datasetIndex]
@@ -24,18 +26,18 @@ function processChart(data) {
 
 // plugin confirmation
 const zoom = {
-  pan: { enabled: true, mode: 'x' },
+  pan: { mode: 'x', enabled },
   zoom: {
-    wheel: { enabled: true },
-    pinch: { enabled: true },
-    mode: 'x'
+    mode: 'x',
+    wheel: { enabled },
+    pinch: { enabled }
   },
   limits: {
-    x: { min: chartMin, max: chartMax }
+    x: { min, max, minRange }
   }
 }
 const decimation = {
-  enabled: true,
+  enabled,
   algorithm: 'lttb',
   samples: 288,
   threshold: 256
@@ -44,8 +46,8 @@ const scales = {
   x: {
     type: 'time',
     round: 'minute',
-    min: chartMin,
-    max: chartMax,
+    min, max,
+    time: { minUnit },
     title: {
       display: true,
       text: 'Time',
@@ -62,6 +64,16 @@ const scales = {
     }
   }
 }
+const annotation = {
+  annotations: {
+    ping: {
+      scaleID: 'y',
+      type: 'line',
+      value: 25,
+      borderColor: "#FFAEDD",
+    }
+  }
+}
 
 // setup
 function createChart(data) {
@@ -73,10 +85,10 @@ function createChart(data) {
         label: 'Server Process Time',
         data: data.processTime,
       }, {
-        label: '/skip',
+        label: 'Segment Loading Time',
         data: data.skipTime,
       }, {
-        label: '/status',
+        label: '/status Loading Time',
         data: data.statusTime,
       }]
     },
@@ -90,6 +102,7 @@ function createChart(data) {
       plugins: {
         decimation,
         zoom,
+        annotation
       }
     }
   }
