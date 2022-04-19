@@ -3,6 +3,8 @@ const minRange = 1000 * 60 * 5
 const max = new Date()
 const min = max - 86400000
 const enabled = true
+const dark = "#111"
+const light = "#ddd"
 
 // helpers
 const getColor = (c) => COLOUR[c.datasetIndex]
@@ -42,6 +44,9 @@ const decimation = {
   samples: 288,
   threshold: 256
 }
+const grid = {
+  color: "#444"
+}
 const scales = {
   x: {
     type: 'time',
@@ -51,8 +56,9 @@ const scales = {
     title: {
       display: true,
       text: 'Time',
-      color: '#000'
-    }
+      color: light
+    },
+    grid
   },
   y: {
     type: 'logarithmic',
@@ -60,8 +66,9 @@ const scales = {
     title: {
       display: true,
       text: 'Response Time (ms)',
-      color: '#000'
-    }
+      color: light
+    },
+    grid
   }
 }
 const annotation = {
@@ -72,6 +79,11 @@ const annotation = {
       value: 25,
       borderColor: "#FFAEDD",
     }
+  }
+}
+const legend = {
+  labels: {
+    color: light
   }
 }
 
@@ -102,7 +114,8 @@ function createChart(data) {
       plugins: {
         decimation,
         zoom,
-        annotation
+        annotation,
+        legend
       }
     }
   }
