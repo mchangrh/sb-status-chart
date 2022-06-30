@@ -76,7 +76,7 @@ const annotation = {
     ping: {
       scaleID: 'y',
       type: 'line',
-      value: 25,
+      value: 1,
       borderColor: "#FFAEDD",
     }
   }
