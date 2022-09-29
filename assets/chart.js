@@ -12,15 +12,18 @@ const getColor = (c) => COLOUR[c.datasetIndex]
 function processChart(data) {
   const sorted = data.sort((a, b) => a.time - b.time);
   const processTime = []
+  const redisTime = []
   const statusTime = []
   const skipTime = []
   sorted.forEach((val) => {
     processTime.push({ x: val.time, y: val.pt })
+    redisTime.push({ x: val.time, y: val.rt })
     statusTime.push({ x: val.time, y: val.status })
     skipTime.push({ x: val.time, y: val.skip })
   })
   return {
     processTime,
+    redisTime,
     statusTime,
     skipTime
   }
@@ -97,6 +100,9 @@ function createChart(data) {
         label: 'Server Process Time',
         data: data.processTime,
       }, {
+        label: 'Redis Process Time',
+        data: data.redisTime,
+      },{
         label: 'Segment Loading Time',
         data: data.skipTime,
       }, {
