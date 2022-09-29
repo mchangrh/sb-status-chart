@@ -17,7 +17,7 @@ function processChart(data) {
   const skipTime = []
   sorted.forEach((val) => {
     processTime.push({ x: val.time, y: val.pt })
-    redisTime.push({ x: val.time, y: val.rt })
+    redisTime.push({ x: val.time, y: val?.rt ?? 0 })
     statusTime.push({ x: val.time, y: val.status })
     skipTime.push({ x: val.time, y: val.skip })
   })
