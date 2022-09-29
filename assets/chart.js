@@ -1,4 +1,4 @@
-const COLOUR = ['#B3FFB5', '#FF9B99', '#B9AEFF']
+const COLOUR = ['#B3FFB5', '#FFE18F', '#FF9B99', '#B9AEFF' ]
 const minRange = 1000 * 60 * 5
 const max = new Date()
 const min = max - 86400000
