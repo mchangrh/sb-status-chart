@@ -7,20 +7,20 @@ const dark = "#111"
 const light = "#ddd"
 
 // helpers
-const getColor = (c) => COLOUR[c.datasetIndex]
+const getColor = c => COLOUR[c.datasetIndex]
 
 function processChart(data) {
-  const sorted = data.sort((a, b) => a.time - b.time);
   const processTime = []
   const redisTime = []
   const statusTime = []
   const skipTime = []
-  sorted.forEach((val) => {
-    processTime.push({ x: val.time, y: val.pt })
-    redisTime.push({ x: val.time, y: val?.rt ?? 0 })
-    statusTime.push({ x: val.time, y: val.status })
-    skipTime.push({ x: val.time, y: val.skip })
-  })
+  data.sort((a, b) => a.time - b.time)
+    .forEach(val => {
+      processTime.push({ x: val.time, y: val.pt })
+      redisTime.push({ x: val.time, y: val?.rt ?? 0 })
+      statusTime.push({ x: val.time, y: val.status })
+      skipTime.push({ x: val.time, y: val.skip })
+    })
   return {
     processTime,
     redisTime,
